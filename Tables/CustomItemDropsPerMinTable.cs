@@ -36,7 +36,7 @@ namespace MidnightMenu_DeathMustDie.Tables
             rarity.Set(ItemRarity.Common, 0.00f);
             rarity.Set(ItemRarity.Rare, 0.00f);
             rarity.Set(ItemRarity.Epic, 0.00f);
-            rarity.Set(ItemRarity.Mythic, 1.00f);
+            rarity.Set(ItemRarity.Mythic, 0.00f);
             rarity.Set(ItemRarity.Immortal, 1.00f); //Immortal treated as Mythic for drops.  An immortal item will never drop, but triggers a unique drop roll.
 
             IReadOnlyWeighedRandomSet<ItemType> typeSet = CreateTypeSet();
@@ -57,7 +57,7 @@ namespace MidnightMenu_DeathMustDie.Tables
             weightedSet.Add(ItemType.Amulet, 10f);
             weightedSet.Add(ItemType.Relic, 10f);
             weightedSet.Add(ItemType.Jewel, 10f);
-            weightedSet.Add(ItemType.Lore, 0f); // safe even if unused
+            weightedSet.Add(ItemType.Lore, 0f);
 
             return weightedSet;
         }

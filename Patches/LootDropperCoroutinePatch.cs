@@ -28,16 +28,12 @@ namespace MidnightMenu_DeathMustDie.Patches
             try
             {
                 var currentValue = dropChanceField.GetValue(__instance);
-                ModMenu.Log.LogInfo($"[LootDropperCoroutine] Current dropChance = {currentValue}");
-
-                // Create a new Optional<float> instance with our slider value
                 var optionalType = currentValue.GetType();
                 var ctor = optionalType.GetConstructor(new[] { typeof(float) });
                 if (ctor != null)
                 {
                     var newOptional = ctor.Invoke(new object[] { ModMenu.DropChanceModifier });
                     dropChanceField.SetValue(__instance, newOptional);
-                    ModMenu.Log.LogInfo($"[LootDropperCoroutine] dropChance updated → {ModMenu.DropChanceModifier}");
                 }
                 else
                 {

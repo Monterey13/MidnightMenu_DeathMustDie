@@ -14,8 +14,10 @@ namespace MidnightMenu_DeathMustDie
     {
         internal static ManualLogSource Log;
         private bool _showMenu;
-        private Rect _windowRect = new Rect(60, 60, 260, 340); // taller window for slider
+        private Rect _windowRect = new Rect(60, 60, 260, 340);
         public static float DropChanceModifier = 0.0f;
+        public static float ItemPowerMultiplier = 1.0f;
+        public static bool ClampItemPower = false;
 
         private void Awake()
         {
@@ -83,20 +85,26 @@ namespace MidnightMenu_DeathMustDie
 
             if (GUILayout.Button("Replace Loot Table"))
                 CheatManager.ReplaceLootTable();
+            GUILayout.Space(2);
 
-            if (GUILayout.Button("Find Refs"))
-                Inspector.FindItemDropsPerMinReferences();
+            ClampItemPower = GUILayout.Toggle(ClampItemPower, "Max Item Power");
+            GUILayout.Space(2);
 
-            GUILayout.Space(15);
             GUILayout.Label("Drop Chance Modifier");
-
             GUILayout.BeginHorizontal();
             GUILayout.Label($"{DropChanceModifier:F1}", GUILayout.Width(40));
             float newVal = GUILayout.HorizontalSlider(DropChanceModifier, 0f, 10f, GUILayout.Width(180));
             GUILayout.EndHorizontal();
+            GUILayout.Space(2);
 
-            // round to nearest 0.1f step
+            GUILayout.Label("Item Power Multiplier");
+            GUILayout.BeginHorizontal();
+            GUILayout.Label($"{ItemPowerMultiplier:F1}", GUILayout.Width(40));
+            float newVal2 = GUILayout.HorizontalSlider(ItemPowerMultiplier, 0f, 10f, GUILayout.Width(180));
+            GUILayout.EndHorizontal();
+
             DropChanceModifier = Mathf.Round(newVal * 10f) / 10f;
+            ItemPowerMultiplier = Mathf.Round(newVal2 * 10f) / 10f;
 
             GUILayout.EndVertical();
             GUI.DragWindow();
