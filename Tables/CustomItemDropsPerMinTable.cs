@@ -11,11 +11,11 @@ namespace MidnightMenu_DeathMustDie.Tables
         private readonly List<ItemDropsPerMin> _entries = new List<ItemDropsPerMin>();
 
         public ItemDropsPerMin this[int index] => _entries[index];
-        public int Count => _entries.Count;
-        public IEnumerator<ItemDropsPerMin> GetEnumerator() => _entries.GetEnumerator();
+        public new int Count => _entries.Count;
+        public new IEnumerator<ItemDropsPerMin> GetEnumerator() => _entries.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public void Add(ItemDropsPerMin entry) => _entries.Add(entry);
+        public new void Add(ItemDropsPerMin entry) => _entries.Add(entry);
 
         public static CustomItemDropsPerMinTable CreateDefault()
         {
@@ -36,7 +36,7 @@ namespace MidnightMenu_DeathMustDie.Tables
             rarity.Set(ItemRarity.Common, 0.00f);
             rarity.Set(ItemRarity.Rare, 0.00f);
             rarity.Set(ItemRarity.Epic, 0.00f);
-            rarity.Set(ItemRarity.Mythic, 0.00f);
+            rarity.Set(ItemRarity.Mythic, 1.00f);
             rarity.Set(ItemRarity.Immortal, 1.00f); //Immortal treated as Mythic for drops.  An immortal item will never drop, but triggers a unique drop roll.
 
             IReadOnlyWeighedRandomSet<ItemType> typeSet = CreateTypeSet();
